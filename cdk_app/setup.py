@@ -31,6 +31,7 @@ setuptools.setup(
         "aws-cdk.aws-apigateway",
         "aws-cdk.aws-cloudwatch",
         "cdk-watchful",
+        "aws_cdk.aws_s3_deployment",
         "boto3"
     ],
 

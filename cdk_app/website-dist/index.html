@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  
+
+  <body>
+    <form id="urlshort">
+        <label for="url"">Enter URL (including) http(s)://</label>"
+        <input id="url" name="value">
+        <br>
+        <input id="postSubmit" type="submit" value="Shorten Url">
+    </form>
+    <p id="link"></p>
+  </body>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+        const thisForm = document.getElementById('urlshort');
+    thisForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const formData = new FormData(thisForm).entries()
+    const url = JSON.stringify(Object.fromEntries(formData))
+    const myObj = JSON.parse(url)
+    x = myObj.value
+    console.log(url)
+    console.log(x)
+    const response = await fetch('https://bkeof9uoo5.execute-api.us-east-1.amazonaws.com/prod/?targetUrl=' + x, {mode: 'cors'});
+
+    const result = await response.json();
+    console.log(result)
+    document.getElementById("link").innerHTML = result;
+    })
+    </script>
+  </body>
+</html>
+      
